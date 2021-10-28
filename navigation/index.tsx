@@ -18,6 +18,7 @@ import HomeScreen from '../screens/HomeScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import AlbumScreen from '../screens/AlbumScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -34,6 +35,15 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
  * https://reactnavigation.org/docs/modal
  */
 const Stack = createNativeStackNavigator<RootStackParamList>();
+
+function HomeNavigator() {
+  return(
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
+      <Stack.Screen name="Album" component={AlbumScreen} options={{headerShown:false}}/>
+    </Stack.Navigator>
+  )
+}
 
 function RootNavigator() {
   return (
@@ -63,8 +73,8 @@ function BottomTabNavigator() {
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
-        name="Home"
-        component={HomeScreen}
+        name="HomeNavigator"
+        component={HomeNavigator}
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
           title: 'Home',
           tabBarIcon: ({ color }) => <Entypo name="home" size={30} color={color} />,

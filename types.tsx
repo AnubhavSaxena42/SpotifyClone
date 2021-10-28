@@ -41,3 +41,10 @@ export type album ={
     artistsHeadline:string;
 
 }
+
+export type song ={ 
+  id:string;
+  imageUri:string;
+  title:string;
+  artist:string;
+}
